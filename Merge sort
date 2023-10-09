@@ -1,0 +1,112 @@
+// https://hack.codingblocks.com/app/contests/4001/2039/problem
+
+#include<iostream>
+using namespace std;
+
+
+void sort(int arr[],int s,int e)
+{
+
+
+
+int lb=s;
+int mid=(s+e)/2;
+int end=e;
+int ub=mid+1;
+int k=s;
+
+int temp[100000];
+
+while(lb<=mid && ub<=end)
+{
+
+	if(arr[lb]>=arr[ub])
+	{
+		temp[k]=arr[ub];
+		k++;
+		ub++;
+	}
+
+	else
+	{
+		temp[k]=arr[lb];
+		k++;
+		lb++;
+	}
+}
+
+
+
+while(lb<=mid)
+{
+	temp[k]=arr[lb];
+	k++;
+	lb++;
+}
+
+while(ub<=end)
+{
+	temp[k]=arr[ub];
+	k++;
+	ub++;
+}
+
+
+
+for(int i=0;i<=(s+e);i++)
+{
+	arr[i]=temp[i];
+}
+
+}
+
+
+
+
+
+
+void mergesort(int arr[],int s,int e)
+{
+
+
+	if(s==e)
+	{
+		return ;
+	}
+
+
+	int mid=(s+e)/2;
+
+	mergesort(arr,s,mid);
+	mergesort(arr,mid+1,e);
+	sort(arr,s,e);
+}
+int main () {
+
+int arr[100000];
+	int n;
+	cin>>n;
+	int temp[100000];
+
+
+	for(int i=0;i<n;i++)
+	{
+		cin>>arr[i];
+	}
+
+int s=0;
+int e=n-1;
+
+
+	mergesort(arr, s, e);
+	
+for(int i=0;i<n;i++)
+	{
+		cout<<arr[i]<<" ";
+	}
+
+
+
+
+	return 0;
+}
